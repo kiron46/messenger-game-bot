@@ -1,6 +1,6 @@
 {
-    "appSecret": "",
-    "pageAccessToken": "",
-    "validationToken": "",
-    "serverURL": ""
+    "appSecret": "defb42ea7e191f01e48014b890597a3d",
+    "pageAccessToken": "EAAaCXwXBZB48BADuoQhFvk7erbFqWsZCxIXwPMa4fKo0bta9cYuYQnq3FSZCE5B22ZB05bD9FAXcWtynYuqZB3V2vZCTePACQZBZAit2Ek8v2EkLt2Qr0bpXJzC0YHcplypWKZBZBvOjLVShI5wXGNwaNEHC5pHLioDZABZCncSN3zZB0ywZDZD",
+    "validationToken": "top_secret!",
+    "serverURL": "https://messenger-game-bot.herokuapp.com/webhook"
 }
