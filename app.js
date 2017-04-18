@@ -341,6 +341,8 @@ function receivedDeliveryConfirmation(event) {
   console.log("All message before %d were delivered.", watermark);
 }
 
+const Game = require('./game.js');
+const game = new Game();
 
 /*
  * Postback Event
@@ -357,13 +359,14 @@ function receivedPostback(event) {
   // The 'payload' param is a developer-defined field which is set in a postback 
   // button for Structured Messages. 
   var payload = event.postback.payload;
+  console.log(JSON.stringify(event));
 
   console.log("Received postback for user %d and page %d with payload '%s' " + 
     "at %d", senderID, recipientID, payload, timeOfPostback);
 
-  // When a postback is called, we'll send a message back to the sender to 
-  // let them know it was successful
-  sendTextMessage(senderID, "Postback called");
+  game.processPayload(senderID, payload, message => {
+    callSendAPI(message);
+  });;
 }
 
 /*
