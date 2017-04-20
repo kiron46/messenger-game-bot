@@ -13,6 +13,7 @@
 const 
   bodyParser = require('body-parser'),
   config = require('config'),
+  cors = require('cors'),
   crypto = require('crypto'),
   express = require('express'),
   https = require('https'),  
@@ -23,6 +24,7 @@ app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
+app.use(cors());
 
 /*
  * Be sure to setup your config values before running this code. You can 
@@ -55,6 +57,13 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
   console.error("Missing config values");
   process.exit(1);
 }
+
+app.get('/color', function(req, res) {
+  var game = new Game();
+  game.getColor(req.params.userID, req.params.accessToken, (color) => {
+    res.send({ userID: req.params.userID, color: color });
+  });
+});
 
 /*
  * Use your own validation token. Check that the token used in the Webhook 

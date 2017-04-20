@@ -1,5 +1,7 @@
 'use strict';
 
+const request = require('request');
+
 const STATE_TREE = {
 	"INITIAL_MESSAGE": {
 		"message": "What is your favorite color?",
@@ -39,9 +41,25 @@ var SENDER_STATES = [];
 
 class Game {
 
+	getColor(appFBID, accessToken, callback) {
+
+
+
+		/*
+
+			GET /{user-id}/ids_for_pages
+		    ?page=302357206851919
+		    &access_token=[app_access_token]
+
+		*/
+
+	}
+
 	processPayload(senderID, payload, callback) {
 
 		console.log(`payload = ${payload}`);
+
+		SENDER_STATES[senderID] = payload;
 
 		var state = STATE_TREE[payload];
 		var buttons = state.options.map(option => ({
