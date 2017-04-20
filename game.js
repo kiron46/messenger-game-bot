@@ -41,17 +41,22 @@ var SENDER_STATES = [];
 
 class Game {
 
-	getColor(appFBID, accessToken, callback) {
+	getColor(appFBID, callback) {
 
+		// Get from https://developers.facebook.com/tools/explorer/
+		var appAccessToken = '295913870821880|wZ0-d9Vlqy83egpH-lxtLmyqpAs'; 
 
-
-		/*
-
-			GET /{user-id}/ids_for_pages
-		    ?page=302357206851919
-		    &access_token=[app_access_token]
-
-		*/
+		request(
+			`https://graph.facebook.com/v2.9/${appFBID}/ids_for_pages?page=302357206851919&access_token=${appAccessToken}`,
+			(error, response, body) => {
+				if (body.data.length > 0) {
+					var pageID = body.data[0].id;
+					callback(null, SENDER_STATES[pageID]);
+				} else {
+					callback('Error, no matched ID found');
+				}
+			}
+		);
 
 	}
 
