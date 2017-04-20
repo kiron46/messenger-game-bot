@@ -60,11 +60,11 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
 
 app.get('/color', function(req, res) {
   var game = new Game();
-  game.getColor(req.params.userID, (error, color) => {
+  game.getColor(req.query.userID, (error, color) => {
     if (error) {
       res.status(500).send({ error: error });
     } else {
-      res.send({ userID: req.params.userID, color: color });
+      res.send({ userID: req.query.userID, color: color });
     }
   });
 });

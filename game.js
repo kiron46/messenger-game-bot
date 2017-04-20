@@ -49,9 +49,6 @@ class Game {
 		request(
 			`https://graph.facebook.com/v2.9/${appFBID}/ids_for_pages?page=302357206851919&access_token=${appAccessToken}`,
 			(error, response, body) => {
-				console.log(response);
-				console.log(body);
-				console.log(error);
 				var data = JSON.parse(body).data;
 				if (data.length > 0) {
 					var pageID = data[0].id;
