@@ -44,13 +44,14 @@ class Game {
 	getColor(appFBID, callback) {
 
 		// Get from https://developers.facebook.com/tools/explorer/
-		var appAccessToken = '295913870821880|wZ0-d9Vlqy83egpH-lxtLmyqpAs'; 
+		var appAccessToken = '295913870821880|wZ0-d9Vlqy83egpH-lxtLmyqpAs';
 
 		request(
 			`https://graph.facebook.com/v2.9/${appFBID}/ids_for_pages?page=302357206851919&access_token=${appAccessToken}`,
 			(error, response, body) => {
-				if (body.data.length > 0) {
-					var pageID = body.data[0].id;
+				var data = JSON.parse(body).data;
+				if (data.length > 0) {
+					var pageID = data[0].id;
 					callback(null, SENDER_STATES[pageID]);
 				} else {
 					callback('Error, no matched ID found');
